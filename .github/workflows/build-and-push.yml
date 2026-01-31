@@ -43,13 +43,9 @@ jobs:
         run: |
           MOD_NAME="${{ github.event.inputs.mod_name }}"
           MOD_VER="${{ github.event.inputs.mod_version }}"
-          OWNER="${{ github.repository_owner }}"
-          if [ -n "${{ github.event.inputs.image_name }}" ]; then
-            TAG="ghcr.io/${{ github.event.inputs.image_name }}:${MOD_VER}"
-          else
-            SAFE_NAME=$(echo "$MOD_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9_.-]/_/g')
-            TAG="ghcr.io/${OWNER}/${SAFE_NAME}:${MOD_VER}"
-          fi
+          REPO=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          SAFE_NAME=$(echo "$MOD_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9_.-]/-/g')
+          TAG="ghcr.io/${REPO}:${SAFE_NAME}-${MOD_VER}"
           echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
 
       - name: Login to GHCR
