@@ -7,7 +7,7 @@ ARG MINECRAFT_MEMORY=4096m
 ARG USER_NAME=minecraft
 ARG SKIP_DOWNLOAD=false
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y zip wget unzip \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends zip wget unzip \
     && addgroup --gid 1234 "${USER_NAME}" \
     && adduser --disabled-password --home=/data --uid 1234 --gid 1234 --gecos "${USER_NAME} user" "${USER_NAME}"
 
