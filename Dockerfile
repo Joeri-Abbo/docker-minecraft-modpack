@@ -1,4 +1,4 @@
-FROM openjdk:27-ea-jdk-slim-bookworm
+FROM openjdk:28-ea-jdk-slim-bookworm
 
 ARG MINECRAFT_MOD_VERSION=5.0.8
 ARG MINECRAFT_MOD_NAME=SkyFactory-5
